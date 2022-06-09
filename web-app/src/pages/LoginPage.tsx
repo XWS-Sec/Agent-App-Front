@@ -20,7 +20,7 @@ const LoginPage = () => {
 
 	return (
 		<div>
-			<h1 className='text-green-600 text-4xl text-center font-bold mt-20 mb-8'>Welcome to Dislinkt</h1>
+			<h1 className='text-green-600 text-4xl text-center font-bold mt-20 mb-8'>Welcome to Joberty</h1>
 			<p className='text-green-600 text-center text' hidden={!message}>
 				{message}
 			</p>

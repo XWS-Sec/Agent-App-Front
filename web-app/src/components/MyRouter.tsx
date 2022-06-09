@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
+import SignupPage from '../pages/SignupPage';
+import SuccessfullyCreatedPage from '../pages/SuccessfullyCreatedPage';
 import Navbar from './navbar/Navbar';
 
 type Props = { loggedIn: boolean };
@@ -14,6 +16,8 @@ const MyRouter = (props: Props) => {
           path='/'
           element={props.loggedIn ? <HomePage /> : <LoginPage />}
         />
+        <Route path='signup' element={<SignupPage />} />
+        <Route path='successfullyCreated' element={<SuccessfullyCreatedPage />} />
         </Routes>
     </BrowserRouter>
   );
