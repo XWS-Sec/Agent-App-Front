@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/auth-context';
 import LogoLink from './LogoLink';
 import Menu from './Menu';
@@ -8,6 +8,7 @@ import Searchbar from './Searchbar';
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -31,10 +32,12 @@ const Navbar = () => {
           </div>
         ) : (
           <div className='text-lg my-2 flex-grow flex justify-end'>
-            <Link to='/' className='mr-4'>
+            <button onClick={() => {navigate('')}} className='mr-4'>
               Log in
-            </Link>
-            <Link to='/signup'>Sign up</Link>
+            </button>
+            <button onClick={() => {navigate('/signup')}}>
+              Sign up
+            </button>
           </div>
         )}
       </div>

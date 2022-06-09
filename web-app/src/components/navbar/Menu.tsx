@@ -9,18 +9,10 @@ const Menu = (props: { toggleMenu: () => void }) => {
 	const authContext = useContext(AuthContext);
 	const navigate = useNavigate();
 
-	const renderMenuLinks = () => {
-		const menuLinks = [
-			{ text: 'Home', pathname: '/' },
-			{ text: 'Create company', pathname: `createCompany` },
-		];
 
-		return menuLinks.map((menuLink) => (
-			<Link key={menuLink.pathname} to={menuLink.pathname} onClick={props.toggleMenu}>
-				<div className='w-full px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>{menuLink.text}</div>
-			</Link>
-		));
-	};
+	const navigateTo = (path: string) =>{
+		navigate(path);
+	}
 
 	const signOut = () => {
 		localStorageUtil.setUser(unsignedUser);
@@ -36,7 +28,12 @@ const Menu = (props: { toggleMenu: () => void }) => {
 				<div className='flex flex-row items-center justify-end bg-green-600 pr-4 text-white py-1'>
 					<MenuToggleButton toggleMenu={props.toggleMenu} />
 				</div>
-				{renderMenuLinks()}
+				<button className='w-full' onClick={() => navigateTo('')}>
+					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>Home</div>
+				</button>
+				<button className='w-full' onClick={() => navigateTo('createCompany')}>
+					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>My company</div>
+				</button>
 				<button className='w-full' onClick={signOut}>
 					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>Sign out</div>
 				</button>
