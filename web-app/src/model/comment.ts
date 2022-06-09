@@ -1,4 +1,4 @@
-export default interface Comment{
+export default interface CustomComment{
     id: string;
     text: string;
     userId: string;

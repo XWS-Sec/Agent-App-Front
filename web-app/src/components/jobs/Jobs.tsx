@@ -20,7 +20,7 @@ const Jobs = (props: Props) => {
                     {
                         props.jobsOffers.map((job) => {
                             return(
-                                <ListGroupItem  onClick={() => jobClicked(job.id)}>
+                                <ListGroupItem key={job.id}  onClick={() => jobClicked(job.id)}>
                                     <Row>
                                         <Col md={2}>
                                             Job title:

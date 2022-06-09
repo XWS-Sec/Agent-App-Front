@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react'
 import { Container,Row,Col,Card,ListGroup,ListGroupItem } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 import { getCompany } from '../api/company';
+import Comments from '../components/comments/Comments';
 import CompanyDetails from '../components/company/CompanyDetails'
 import Jobs from '../components/jobs/Jobs';
 import Company from '../model/company';
