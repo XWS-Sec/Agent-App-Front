@@ -116,19 +116,14 @@ const CreateCompanyPage = () => {
   const create = async (createCompanyDto: CreateCompanyDto) => {
     setFetching(true);
 
-    const response = await createCompanyRequst(createCompanyDto);
-
-    switch (response.status) {
-      case HttpStatusCode.OK:
-        setErrorText('');
-        alert("Successfully created request!\n Wait for admins approval");
-        break;
-      case HttpStatusCode.BAD_REQUEST:
-        setErrorText('Bad request.');
-        break;
-      default:
-        setErrorText('Unknown error occurred.');
-        break;
+    const companyId = await createCompanyRequst(createCompanyDto);
+    if(companyId != ''){
+      setErrorText('');
+      alert("Successfully created request!\n Wait for admins approval");
+      authContext.user.companyId = companyId;
+      navigate(`/company/${companyId}`)
+    }else{
+      setErrorText('Bad request.');
     }
 
     setFetching(false);
@@ -150,14 +145,6 @@ const CreateCompanyPage = () => {
           text='Name:'
           name='Name'
           placeholder='Name'
-          onChange={nameChangeHandler}
-        />
-        <ErrorLabel text={''} />
-        <InputWithLabel
-          type='text'
-          text='First name:'
-          name='name'
-          placeholder='first name'
           onChange={nameChangeHandler}
         />
 <ErrorLabel text={''} />

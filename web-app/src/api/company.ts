@@ -6,16 +6,17 @@ const url: string = '/api/Company';
 
 export const createCompanyRequst = async (createCompanyDto:CreateCompanyDto) => {
    
-
+    var companyId = '';
     const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(createCompanyDto),
-      });
-    
-      return response;
+      })
+      .then(res => res.json())
+      .then(result => companyId =result.id);
+      return companyId;
 }
 
 export const getCompany = async (id:string) : Promise<Company> => {
