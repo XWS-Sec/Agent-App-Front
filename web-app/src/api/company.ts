@@ -26,7 +26,9 @@ export const getCompany = async (id:string) : Promise<Company> => {
       email: "",
       phoneNumber: "",
       description: "",
-      isVerified: false
+      isVerified: false,
+      comments: [],
+      jobOffers: []
     };
     const response = await fetch(url+`/${id}`,{
       method: 'GET'

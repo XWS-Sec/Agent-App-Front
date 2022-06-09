@@ -1,3 +1,5 @@
+import JobOffer from "./jobOffer";
+
 export default interface Company{
     id: string;
     name: string;
@@ -6,4 +8,6 @@ export default interface Company{
     phoneNumber: string;
     description: string;
     isVerified: boolean;
+    comments: Comment[];
+    jobOffers: JobOffer[];
 }

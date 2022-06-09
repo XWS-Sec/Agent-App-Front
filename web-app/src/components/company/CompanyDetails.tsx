@@ -24,7 +24,7 @@ const CompanyDetails = (props: Props) => {
     };
 
     return (
-        <Card className='m-5' style={{ width: '200rem' }}>
+        <Card className='m-5 shadow' style={{ width: '200rem' }}>
                     <Card.Body>
                         <Card.Title> <h3>{props.company.name}</h3></Card.Title>
                         <Card.Text>
@@ -68,7 +68,7 @@ const CompanyDetails = (props: Props) => {
                         {
                             props.company.isVerified ?
                              <button className='btnWhiteGreen' onClick={addJob}>
-                                Add open job positions
+                                Add job position
                             </button> 
                             : 
                             <p style={{color:'red'}}>
