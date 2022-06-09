@@ -12,8 +12,7 @@ const Menu = (props: { toggleMenu: () => void }) => {
 	const renderMenuLinks = () => {
 		const menuLinks = [
 			{ text: 'Home', pathname: '/' },
-			{ text: 'Profile', pathname: `users/${authContext.user.userName}` },
-			{ text: 'Change password', pathname: `changePassword` },
+			{ text: 'Create company', pathname: `createCompany` },
 		];
 
 		return menuLinks.map((menuLink) => (
