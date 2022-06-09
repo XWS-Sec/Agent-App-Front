@@ -7,7 +7,6 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import AuthContext, { User } from '../context/auth-context';
 import CreateUserDto from '../dtos/create-user.dto';
 import { HttpStatusCode } from '../utils/http-status-code.enum';
-import localStorageUtil from '../utils/local-storage.util';
 import SignupValidation from '../utils/signup-validation';
 
 const SignupPage = () => {
@@ -260,18 +259,6 @@ const SignupPage = () => {
           onChange={confirmPasswordChangeHandler}
         />
         <ErrorLabel text={confirmPasswordErrorText} />
-
-
-        {/* <div className='flex flex-wrap items-center mb-3'>
-          <p className='my-1'>About me:</p>
-          <p className='ml-2 text-gray-500'>(optional)</p>
-          <textarea
-            className='input p-1 resize-none w-full h-40'
-            maxLength={150}
-            placeholder='Say something about yourself'
-            onChange={profileDescriptionChangeHandler}
-          />
-        </div> */}
 
         {fetching ? (
           <div className='flex justify-center pt-3'>
