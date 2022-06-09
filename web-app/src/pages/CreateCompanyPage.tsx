@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createCompanyRequst } from '../api/createCompany';
+import { createCompanyRequst } from '../api/company';
 import ErrorLabel from '../components/common/ErrorLabel';
 import InputWithLabel from '../components/common/InputWithLabel';
 import LoadingSpinner from '../components/common/LoadingSpinner';

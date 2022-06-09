@@ -39,6 +39,8 @@ const LoginForm = (props: { changeState: (value: string) => void }) => {
 				user.loggedIn = true;
 				if(user.company!=null)
 					user.companyId = user.company.id;
+				else
+					user.companyId = '';
 
 				localStorageUtil.setUser(user);
 				authContext.updateAuthContext(user);
