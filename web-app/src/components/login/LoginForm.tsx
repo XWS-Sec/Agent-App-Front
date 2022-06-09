@@ -37,6 +37,8 @@ const LoginForm = (props: { changeState: (value: string) => void }) => {
 
 				const user = await response.json();
 				user.loggedIn = true;
+				if(user.company!=null)
+					user.companyId = user.company.id;
 
 				localStorageUtil.setUser(user);
 				authContext.updateAuthContext(user);

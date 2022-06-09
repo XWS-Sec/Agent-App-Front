@@ -10,8 +10,11 @@ const Menu = (props: { toggleMenu: () => void }) => {
 	const navigate = useNavigate();
 
 
-	const navigateTo = (path: string) =>{
-		navigate(path);
+	const navigateToCompany = () =>{
+		if(authContext.user.companyId != '')
+			navigate('/company/' + authContext.user.companyId)
+		else
+			navigate('/createCompany')
 	}
 
 	const signOut = () => {
@@ -28,10 +31,10 @@ const Menu = (props: { toggleMenu: () => void }) => {
 				<div className='flex flex-row items-center justify-end bg-green-600 pr-4 text-white py-1'>
 					<MenuToggleButton toggleMenu={props.toggleMenu} />
 				</div>
-				<button className='w-full' onClick={() => navigateTo('')}>
+				<button className='w-full' onClick={() => navigate('')}>
 					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>Home</div>
 				</button>
-				<button className='w-full' onClick={() => navigateTo('createCompany')}>
+				<button className='w-full' onClick={navigateToCompany}>
 					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>My company</div>
 				</button>
 				<button className='w-full' onClick={signOut}>

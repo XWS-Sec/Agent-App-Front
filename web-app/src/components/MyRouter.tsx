@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CompanyPage from '../pages/CompanyPage';
 import CreateCompanyPage from '../pages/CreateCompanyPage';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
@@ -20,6 +21,7 @@ const MyRouter = (props: Props) => {
         <Route path='signup' element={<SignupPage />} />
         <Route path='successfullyCreated' element={<SuccessfullyCreatedPage />} />
         <Route path='createCompany' element={<CreateCompanyPage />} />
+        <Route path='company/:id' element={<CompanyPage />} />
         </Routes>
     </BrowserRouter>
   );

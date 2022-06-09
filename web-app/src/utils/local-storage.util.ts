@@ -13,6 +13,7 @@ class LocalStorageUtil {
         id: this.getUserId(),
         userName: this.getUsername(),
         role: this.getRole(),
+        companyId: this.getCompanyId(),
       };
 
       return user;
@@ -25,9 +26,17 @@ class LocalStorageUtil {
     this.setUserId(user.id);
     this.setUsername(user.userName);
     this.setRole(user.role);
+    this.setCompanyId(user.companyId);
   }
 
-  
+  public getCompanyId(): string {
+    const companyId = localStorage.getItem(LocalStorageItem.COMPANY_ID);
+    return companyId ? companyId : '';
+  }
+
+  public setCompanyId(value: string): void{
+    localStorage.setItem(LocalStorageItem.COMPANY_ID,value.toString());
+  }
 
   public getUserId(): string {
     const userId = localStorage.getItem(LocalStorageItem.USER_ID);

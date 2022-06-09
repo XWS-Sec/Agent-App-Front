@@ -7,6 +7,7 @@ export interface User {
   id: string;
   userName: string;
   role: Role;
+  companyId: string;
 }
 
 export const unsignedUser: User = {
@@ -15,6 +16,7 @@ export const unsignedUser: User = {
   id: '',
   userName: '',
   role: Role.UNDEFINED,
+  companyId: '',
 };
 
 const AuthContext = React.createContext({
