@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CompanyPage from '../pages/CompanyPage';
 import CreateCompanyPage from '../pages/CreateCompanyPage';
+import CreateJobPage from '../pages/CreateJobPage';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
@@ -14,14 +15,15 @@ const MyRouter = (props: Props) => {
     <BrowserRouter>
         <Navbar />
         <Routes>
-        <Route
-          path='/'
-          element={props.loggedIn ? <HomePage /> : <LoginPage />}
-        />
-        <Route path='signup' element={<SignupPage />} />
-        <Route path='successfullyCreated' element={<SuccessfullyCreatedPage />} />
-        <Route path='createCompany' element={<CreateCompanyPage />} />
-        <Route path='company/:id' element={<CompanyPage />} />
+          <Route
+            path='/'
+            element={props.loggedIn ? <HomePage /> : <LoginPage />}
+          />
+          <Route path='signup' element={<SignupPage />} />
+          <Route path='successfullyCreated' element={<SuccessfullyCreatedPage />} />
+          <Route path='createCompany' element={<CreateCompanyPage />} />
+          <Route path='company/:id' element={<CompanyPage />} />
+          <Route path='createJob' element={<CreateJobPage />} />
         </Routes>
     </BrowserRouter>
   );

@@ -3,6 +3,7 @@ import { useContext, useState,useEffect } from 'react'
 import {Card,ListGroup,ListGroupItem,Row,Col } from 'react-bootstrap'
 import Company from '../../model/company';
 import AuthContext from '../../context/auth-context';
+import { useNavigate } from 'react-router-dom';
 
 type Props = { company: Company };
 
@@ -10,13 +11,14 @@ const CompanyDetails = (props: Props) => {
 
     const authContext = useContext(AuthContext);
     const [isOwner,setOwner] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         checkOwnership();
     },[])
 
     const addJob = () =>{
-        alert("Job added")
+        navigate('/createJob')
     }
 
     const checkOwnership = () => {
