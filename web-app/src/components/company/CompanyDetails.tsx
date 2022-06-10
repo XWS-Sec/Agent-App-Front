@@ -32,7 +32,7 @@ const CompanyDetails = (props: Props) => {
     return (
         <Card className='m-5 shadow' style={{ width: '200rem' }}>
                     <Card.Body>
-                        <Card.Title> <h3>{props.company.name}</h3> {isOwner && <button className='btnGreenWhite absolute m-2 top-0 right-0' onClick={editCompany}>Edit</button>}</Card.Title>
+                        <Card.Title> <h3>{props.company.name}</h3> {isOwner && props.company.isVerified && <button className='btnGreenWhite absolute m-2 top-0 right-0' onClick={editCompany}>Edit</button>}</Card.Title>
                         <Card.Text>
                         {props.company.description}
                         </Card.Text>
