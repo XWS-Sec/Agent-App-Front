@@ -19,6 +19,17 @@ export const createCompanyRequst = async (createCompanyDto:CreateCompanyDto) => 
       return companyId;
 }
 
+export const updateCompanyRequest =async (editCompanyDto:CreateCompanyDto) => {
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editCompanyDto),
+      })
+    return response;
+}
+
 export const getCompany = async (id:string) : Promise<Company> => {
     var data : Company = {
       id: "",

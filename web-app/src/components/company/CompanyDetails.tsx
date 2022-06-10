@@ -22,7 +22,7 @@ const CompanyDetails = (props: Props) => {
     }
 
     const editCompany = () =>{
-        navigate('')
+        navigate('/editCompany')
     }
 
     const checkOwnership = () => {
@@ -69,20 +69,15 @@ const CompanyDetails = (props: Props) => {
                             </Row>
                         </ListGroupItem>
                     </ListGroup>
-                    {isOwner ? 
                     <Card.Body>
-                        {
-                            props.company.isVerified ?
-                             <button className='btnWhiteGreen' onClick={addJob}>
-                                Add job position
-                            </button> 
-                            : 
-                            <p style={{color:'red'}}>
-                                <b>Still not verified! Waiting for admin's approval.</b>
-                            </p>
-                        }
-                    </Card.Body> : <></>
-                }
+                    {
+                        props.company.isVerified? 
+                        <>{isOwner &&<button className='btnWhiteGreen' onClick={addJob}>Add job position</button> }</>
+                        : 
+                        <p style={{color:'red'}}><b>Still not verified! Waiting for admin's approval.</b>
+                    </p>
+                    }
+                    </Card.Body>
                 </Card>
     )
 }

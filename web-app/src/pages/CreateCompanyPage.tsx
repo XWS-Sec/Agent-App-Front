@@ -1,6 +1,6 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createCompanyRequst } from '../api/company';
+import { createCompanyRequst, getCompany, updateCompanyRequest } from '../api/company';
 import ErrorLabel from '../components/common/ErrorLabel';
 import InputWithLabel from '../components/common/InputWithLabel';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -30,6 +30,9 @@ const CreateCompanyPage = () => {
   const [errorLabelText, setErrorText] = useState('');
   const [emailErrorText, setEmailErrorText] = useState('');
 
+  const [editMode,setEditMode] = useState(()=>{return authContext.user.companyId!='';});
+
+
   const emailChangeHandler = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -42,6 +45,7 @@ const CreateCompanyPage = () => {
 
     try {
       await validateEmailRef.current(value);
+      setEmailErrorText('');
     } catch (error: any) {
       setEmailErrorText(error.message);
     }
@@ -107,11 +111,35 @@ const CreateCompanyPage = () => {
         description: description,
         phoneNumber: phoneNumber
       };
-      await create(createCompanyDto);
+      if(editMode)
+        await update(createCompanyDto)
+      else
+        await create(createCompanyDto);
     } else {
       setErrorText('Please fill out required fields correctly.');
     }
   };
+
+  const update =async (editCompanyDto:CreateCompanyDto) => {
+    setFetching(true);
+
+    const response = await updateCompanyRequest(editCompanyDto);
+
+		switch (response.status) {
+			case HttpStatusCode.OK:
+        alert("Company updated successfully!");
+				navigate('');
+				break;
+			case HttpStatusCode.UNAUTHORIZED:
+				alert('Bad request.');
+				break;
+			default:
+				alert('Unknown error occured');
+				break;
+		}
+
+    setFetching(false);
+  }
 
   const create = async (createCompanyDto: CreateCompanyDto) => {
     setFetching(true);
@@ -182,7 +210,7 @@ const CreateCompanyPage = () => {
             <ErrorLabel text={errorLabelText} />
             <div className='flex my-2'>
               <button className='btnGreenWhite w-full' onClick={createCompany}>
-                Create company
+                {editMode? 'Edit company' : 'Create company'}
               </button>
             </div>
           </div>

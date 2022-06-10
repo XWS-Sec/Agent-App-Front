@@ -23,6 +23,7 @@ const MyRouter = (props: Props) => {
           <Route path='signup' element={<SignupPage />} />
           <Route path='successfullyCreated' element={<SuccessfullyCreatedPage />} />
           <Route path='createCompany' element={<CreateCompanyPage />} />
+          <Route path='editCompany' element={<CreateCompanyPage />} />
           <Route path='company/:id' element={<CompanyPage />} />
           <Route path='jobs/:id' element={<JobOfferPage />} />
           <Route path='createJob' element={<CreateJobPage />} />
