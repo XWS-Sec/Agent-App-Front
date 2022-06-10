@@ -19,6 +19,16 @@ export const createCompanyRequst = async (createCompanyDto:CreateCompanyDto) => 
       return companyId;
 }
 
+export const publishCompanyRequest =async () => {
+  const response = await fetch(url+'/publish', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+return response;
+}
+
 export const updateCompanyRequest =async (editCompanyDto:CreateCompanyDto) => {
     const response = await fetch(url, {
         method: 'PUT',
@@ -40,7 +50,8 @@ export const getCompany = async (id:string) : Promise<Company> => {
       description: "",
       isVerified: false,
       comments: [],
-      jobOffers: []
+      jobOffers: [],
+      apiKey: ""
     };
     const response = await fetch(url+`/${id}`,{
       method: 'GET'

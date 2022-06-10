@@ -36,7 +36,7 @@ const Jobs = (props: Props) => {
 				alert('Bad request.');
 				break;
 			default:
-				alert('Unknown error occured');
+				alert('Error occured, try publishing company first!');
 				break;
 		}
     }

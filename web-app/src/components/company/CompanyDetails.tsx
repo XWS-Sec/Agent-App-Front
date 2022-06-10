@@ -4,6 +4,8 @@ import {Card,ListGroup,ListGroupItem,Row,Col } from 'react-bootstrap'
 import Company from '../../model/company';
 import AuthContext from '../../context/auth-context';
 import { useNavigate } from 'react-router-dom';
+import { publishCompanyRequest } from '../../api/company';
+import { HttpStatusCode } from '../../utils/http-status-code.enum';
 
 type Props = { company: Company };
 
@@ -11,6 +13,7 @@ const CompanyDetails = (props: Props) => {
 
     const authContext = useContext(AuthContext);
     const [isOwner,setOwner] = useState(false);
+    const [hasApiKey,setApiKey] = useState(!props.company.apiKey);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,10 +32,34 @@ const CompanyDetails = (props: Props) => {
        setOwner(authContext.user.companyId == props.company.id);
     };
 
+    const publishCompany = async () => {
+        const response = await publishCompanyRequest();
+
+		switch (response.status) {
+			case HttpStatusCode.OK:    
+                setApiKey(false);
+                alert("Company published!");
+				break;
+			case HttpStatusCode.UNAUTHORIZED:
+				alert('Bad request.');
+				break;
+			default:
+				alert('Unknown error occured');
+				break;
+		}
+    }
+
     return (
         <Card className='m-5 shadow' style={{ width: '200rem' }}>
                     <Card.Body>
-                        <Card.Title> <h3>{props.company.name}</h3> {isOwner && props.company.isVerified && <button className='btnGreenWhite absolute m-2 top-0 right-0' onClick={editCompany}>Edit</button>}</Card.Title>
+                        <Card.Title> 
+                            <h3>{props.company.name}</h3>
+                             {isOwner && props.company.isVerified && <div className='absolute m-2 top-0 right-0'>
+                                <button className='btnGreenWhite m-1' onClick={editCompany}>Edit</button>
+                                {hasApiKey && <button className='btnGreenWhite' onClick={publishCompany}>Publish</button>}
+                            </div>
+                                }
+                        </Card.Title>
                         <Card.Text>
                         {props.company.description}
                         </Card.Text>

@@ -8,6 +8,7 @@ export default interface Company{
     email: string;
     phoneNumber: string;
     description: string;
+    apiKey: string;
     isVerified: boolean;
     comments: CustomComment[];
     jobOffers: JobOffer[];
