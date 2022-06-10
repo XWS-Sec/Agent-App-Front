@@ -15,9 +15,14 @@ const Comments = (props: Props) => {
         {
                 props.comments.map((comment) => {
                     return(
-                        <Col md={2}>
-                            <Card className='border-dark'>
-
+                        <Col key={comment.id} md={3}>
+                            <Card className='border-dark m-2'>
+                                <Card.Text>
+                                    {comment.text}
+                                </Card.Text>
+                                <Card.Footer className='text-muted'>
+                                   Date created:{comment.dateCreated.toString().split('T')[0]}
+                                </Card.Footer>
                             </Card>
                         </Col>
                     );
