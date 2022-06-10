@@ -36,6 +36,14 @@ export const getJobOffer  = async (id:string) : Promise<JobOffer> => {
   return data;
 }
 
+export const publishJobOffer =async (id:string) => {
+  const response = await fetch(url+`/publish/${id}`,{
+    method: 'POST'
+  });
+
+  return response;
+}
+
 export const createComment = async (createCommentDto:CreateCommentDto) => {
   const response = await fetch(url + '/comment', {
     method: 'POST',
