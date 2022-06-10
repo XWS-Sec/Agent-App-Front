@@ -4,45 +4,64 @@ import AuthContext, { unsignedUser } from '../../context/auth-context';
 import localStorageUtil from '../../utils/local-storage.util';
 import MenuToggleButton from './MenuToggleButton';
 import './navbar-menu-animation.css';
+import { Role } from './../../model/enums/role.enum';
 
 const Menu = (props: { toggleMenu: () => void }) => {
-	const authContext = useContext(AuthContext);
-	const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  const navigateToCompany = () => {
+    if (authContext.user.companyId != '')
+      navigate('/company/' + authContext.user.companyId);
+    else navigate('/createCompany');
+  };
 
-	const navigateToCompany = () =>{
-		if(authContext.user.companyId != '')
-			navigate('/company/' + authContext.user.companyId)
-		else
-			navigate('/createCompany')
-	}
+  const signOut = () => {
+    localStorageUtil.setUser(unsignedUser);
+    authContext.updateAuthContext(unsignedUser);
+    navigate('');
+    props.toggleMenu();
+  };
 
-	const signOut = () => {
-		localStorageUtil.setUser(unsignedUser);
-		authContext.updateAuthContext(unsignedUser);
-		navigate('');
-		props.toggleMenu();
-	};
-
-	return (
-		<div className='flex flex-row absolute top-0 w-screen navbar-menu-animation'>
-			<div className='bg-black opacity-70 flex-grow' onClick={props.toggleMenu}></div>
-			<div className='w-56 md:w-72 h-screen bg-white'>
-				<div className='flex flex-row items-center justify-end bg-green-600 pr-4 text-white py-1'>
-					<MenuToggleButton toggleMenu={props.toggleMenu} />
-				</div>
-				<button className='w-full' onClick={() => navigate('')}>
-					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>Home</div>
-				</button>
-				<button className='w-full' onClick={navigateToCompany}>
-					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>My company</div>
-				</button>
-				<button className='w-full' onClick={signOut}>
-					<div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>Sign out</div>
-				</button>
-			</div>
-		</div>
-	);
+  return (
+    <div className='flex flex-row absolute top-0 w-screen navbar-menu-animation'>
+      <div
+        className='bg-black opacity-70 flex-grow'
+        onClick={props.toggleMenu}
+      ></div>
+      <div className='w-56 md:w-72 h-screen bg-white'>
+        <div className='flex flex-row items-center justify-end bg-green-600 pr-4 text-white py-1'>
+          <MenuToggleButton toggleMenu={props.toggleMenu} />
+        </div>
+        <button className='w-full' onClick={() => navigate('')}>
+          <div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>
+            Home
+          </div>
+        </button>
+        {authContext.user.userName === 'admin' ? (
+          <button
+            className='w-full'
+            onClick={() => navigate('/company-requests')}
+          >
+            <div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>
+              Company requests
+            </div>
+          </button>
+        ) : (
+          <button className='w-full' onClick={navigateToCompany}>
+            <div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>
+              My company
+            </div>
+          </button>
+        )}
+        <button className='w-full' onClick={signOut}>
+          <div className='px-3 py-2 border-gray-100 border-b-2 text-center hover:bg-gray-100'>
+            Sign out
+          </div>
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Menu;
