@@ -29,7 +29,7 @@ const CompanyPage = (props: any) => {
             <CompanyDetails company={company}/>
           </Row>
           <Row>
-            <Jobs jobsOffers={company.jobOffers}></Jobs>
+            <Jobs jobsOffers={company.jobOffers} companyId={company.id}></Jobs>
           </Row>
         </Col>
        

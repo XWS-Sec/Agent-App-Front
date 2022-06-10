@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import JobOffer from '../../model/jobOffer';
 import {Card,ListGroup,ListGroupItem,Row,Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { publishJobOffer } from '../../api/jobOffers';
 import { HttpStatusCode } from '../../utils/http-status-code.enum';
+import AuthContext from '../../context/auth-context';
 
-type Props = { jobsOffers: JobOffer[] };
+type Props = { jobsOffers: JobOffer[],companyId: string };
 
 const Jobs = (props: Props) => {
-
+    const authContext = useContext(AuthContext);
     const navigate = useNavigate();
     const[jobs,setJobs] = useState<JobOffer[]>(props.jobsOffers)
-    
+    const [isOwner,setOwner] = useState(()=>{
+        return authContext.user.companyId == props.companyId;
+    });
+
     const jobClicked = (id : string) => {
         navigate(`/jobs/${id}`);
     }
@@ -77,7 +81,7 @@ const Jobs = (props: Props) => {
                                         </Row>
                                       </Col>
                                         <Col md={2}>
-                                            {job.isPublished == false && <button className='btnWhiteGreen' onClick={(e)=> publishJob(job.id)}>Publish</button>}
+                                            {isOwner == true && job.isPublished == false && <button className='btnWhiteGreen' onClick={(e)=> publishJob(job.id)}>Publish</button>}
                                         </Col>
                                     </Row>
                                 </ListGroupItem>
