@@ -38,3 +38,16 @@ export const getCompany = async (id:string) : Promise<Company> => {
     .then(result => {data = result});
     return data;
 }
+
+export const getCompanies =async () : Promise<Company[]> =>  {
+    var data : Company[] = [];
+
+    const response = await fetch(url,{
+      method: 'GET'
+    })
+    .then(res => res.json())
+    .then(result => {data = result});
+    return data;
+
+    return data;
+}

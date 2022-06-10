@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card,ListGroup,ListGroupItem,Row,Col } from 'react-bootstrap';
+import {Card,Row,Col } from 'react-bootstrap';
 import CustomComment from '../../model/comment';
 
 type Props = { comments: CustomComment[] };
