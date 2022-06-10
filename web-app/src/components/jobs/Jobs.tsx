@@ -1,13 +1,16 @@
 import React from 'react'
 import JobOffer from '../../model/jobOffer';
 import {Card,ListGroup,ListGroupItem,Row,Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 type Props = { jobsOffers: JobOffer[] };
 
 const Jobs = (props: Props) => {
 
+    const navigate = useNavigate();
+    
     const jobClicked = (id : string) => {
-        alert(id);
+        navigate(`/jobs/${id}`);
     }
 
     return (

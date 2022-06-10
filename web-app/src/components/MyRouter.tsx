@@ -3,6 +3,7 @@ import CompanyPage from '../pages/CompanyPage';
 import CreateCompanyPage from '../pages/CreateCompanyPage';
 import CreateJobPage from '../pages/CreateJobPage';
 import HomePage from '../pages/HomePage';
+import JobOfferPage from '../pages/JobOfferPage';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
 import SuccessfullyCreatedPage from '../pages/SuccessfullyCreatedPage';
@@ -23,6 +24,7 @@ const MyRouter = (props: Props) => {
           <Route path='successfullyCreated' element={<SuccessfullyCreatedPage />} />
           <Route path='createCompany' element={<CreateCompanyPage />} />
           <Route path='company/:id' element={<CompanyPage />} />
+          <Route path='jobs/:id' element={<JobOfferPage />} />
           <Route path='createJob' element={<CreateJobPage />} />
         </Routes>
     </BrowserRouter>
