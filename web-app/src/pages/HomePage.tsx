@@ -11,7 +11,7 @@ const HomePage = () => {
 
     useEffect(() => {
 
-      getCompanies().then(result => setCompaniesState(result));
+      getCompanies().then(result => setCompaniesState(result.filter(company => company.isVerified)));
   },[]);
 
   return (

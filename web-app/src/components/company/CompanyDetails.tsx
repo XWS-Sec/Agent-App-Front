@@ -21,6 +21,10 @@ const CompanyDetails = (props: Props) => {
         navigate('/createJob')
     }
 
+    const editCompany = () =>{
+        navigate('/editCompany')
+    }
+
     const checkOwnership = () => {
        setOwner(authContext.user.companyId == props.company.id);
     };
@@ -28,7 +32,7 @@ const CompanyDetails = (props: Props) => {
     return (
         <Card className='m-5 shadow' style={{ width: '200rem' }}>
                     <Card.Body>
-                        <Card.Title> <h3>{props.company.name}</h3></Card.Title>
+                        <Card.Title> <h3>{props.company.name}</h3> {isOwner && props.company.isVerified && <button className='btnGreenWhite absolute m-2 top-0 right-0' onClick={editCompany}>Edit</button>}</Card.Title>
                         <Card.Text>
                         {props.company.description}
                         </Card.Text>
@@ -65,20 +69,15 @@ const CompanyDetails = (props: Props) => {
                             </Row>
                         </ListGroupItem>
                     </ListGroup>
-                    {isOwner ? 
                     <Card.Body>
-                        {
-                            props.company.isVerified ?
-                             <button className='btnWhiteGreen' onClick={addJob}>
-                                Add job position
-                            </button> 
-                            : 
-                            <p style={{color:'red'}}>
-                                <b>Still not verified! Waiting for admin's approval.</b>
-                            </p>
-                        }
-                    </Card.Body> : <></>
-                }
+                    {
+                        props.company.isVerified? 
+                        <>{isOwner &&<button className='btnWhiteGreen' onClick={addJob}>Add job position</button> }</>
+                        : 
+                        <p style={{color:'red'}}><b>Still not verified! Waiting for admin's approval.</b>
+                    </p>
+                    }
+                    </Card.Body>
                 </Card>
     )
 }
